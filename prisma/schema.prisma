@@ -35,11 +35,11 @@ model Movie {
 model Review {
   id String @id @default(uuid())
 
-  text    String
-  raiting Decimal @default(0.0)
+  text   String
+  rating Decimal @default(0.0)
 
-  movie    Movie  @relation("MovieReviews", fields: [moviedId], references: [id])
-  moviedId String @map("movie_id")
+  movie   Movie?  @relation("MovieReviews", fields: [movieId], references: [id])
+  movieId String? @map("movie_id")
 
   createdAt DateTime @default(now()) @map("created_at")
   updateAt  DateTime @updatedAt @map("update_at")
@@ -64,8 +64,7 @@ model MoviePoster {
 
   url String
 
-  movie   Movie?  @relation
-  movieId String? @map("movie_id")
+  movie Movie?
 
   createdAt DateTime @default(now()) @map("created_at")
   updateAt  DateTime @updatedAt @map("update_at")
